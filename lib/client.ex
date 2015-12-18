@@ -28,6 +28,20 @@ defmodule Client do
   end
 
   @doc """
+  Get the order book for a stock
+  """
+  def order_book(venue, stock) do
+    with {:ok, 200, _headers, body_ref} <- :hackney.request(:get, order_book_url(venue, stock)),
+         {:ok, body} <- :hackney.body(body_ref),
+         {:ok, q} <- Poison.Parser.parse(body),
+      do: {:ok, q}
+  end
+
+  defp order_book_url(venue, stock) do
+    "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks/#{stock}"
+  end
+
+  @doc """
   Buy a stock. Wrapper around `order`
   """
   def buy(account, venue, stock, price, qty, order_type, api_key) do
