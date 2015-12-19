@@ -67,11 +67,30 @@ defmodule Client do
                                                             headers,
                                                             body),
          {:ok, result} <- :hackney.body(result_ref),
-         {:ok, r} <- Poison.decode(result, as: Client.OrderResult),
+         {:ok, r} <- Poison.decode(result, keys: :atoms, as: Client.OrderResult),
+         r = Client.OrderResult.update_fills(r),
       do: {:ok, r}
   end
 
   defp order_url(venue, stock) do
     "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks/#{stock}/orders"
+  end
+
+  @doc """
+  Get the status for an order
+  """
+  def order_status(order_id, venue, stock, api_key) do
+    headers = [{"X-Starfighter-Authorization", api_key}]
+    with {:ok, 200, _headers, result_ref} <- :hackney.request(:get, 
+                                                            order_status_url(order_id, venue, stock),
+                                                            headers),
+         {:ok, result} <- :hackney.body(result_ref),
+         {:ok, r} <- Poison.decode(result, keys: :atoms, as: Client.OrderResult),
+         r = Client.OrderResult.update_fills(r),
+      do: {:ok, r}
+  end
+
+  defp order_status_url(order_id, venue, stock) do
+    "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks/#{stock}/orders/#{order_id}"
   end
 end
