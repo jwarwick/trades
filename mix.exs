@@ -30,7 +30,8 @@ defmodule Trades.Mixfile do
   defp deps do
     [
       {:hackney, "~> 1.4"},
-      {:poison, "~> 1.5"}
+      {:poison, "~> 1.5"},
+      {:websocket_client, git: "https://github.com/jeremyong/websocket_client.git"}
     ]
   end
 end
