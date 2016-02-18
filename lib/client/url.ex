@@ -3,29 +3,24 @@ defmodule Client.Url do
   URLs to access StockFighter Trades API
   """
 
-  def heartbeat_url, do: "https://api.stockfighter.io/ob/api/heartbeat"
+  @default_host "https://api.stockfighter.io"
+  @default_base_path "/ob/api"
 
-  def venue_heartbeat_url(venue) do
-    "https://api.stockfighter.io/ob/api/venues/#{venue}/heartbeat"
-  end
+  @host Application.get_env(:trades, :stockfighter)[:host] || @default_host
+  @path Application.get_env(:trades, :stockfighter)[:base_path] || @default_base_path
+  @host_path "#{@host}#{@path}"
 
-  def stock_list_url(venue) do
-    "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks"
-  end
+  def heartbeat_url, do: "#{@host_path}/heartbeat"
 
-  def quote_url(venue, stock) do
-    "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks/#{stock}/quote"
-  end
+  def venue_heartbeat_url(venue), do: "#{@host_path}/venues/#{venue}/heartbeat"
 
-  def order_book_url(venue, stock) do
-    "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks/#{stock}"
-  end
+  def stock_list_url(venue), do: "#{@host_path}/#{venue}/stocks"
 
-  def order_url(venue, stock) do
-    "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks/#{stock}/orders"
-  end
+  def quote_url(venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}/quote"
 
-  def order_status_url(order_id, venue, stock) do
-    "https://api.stockfighter.io/ob/api/venues/#{venue}/stocks/#{stock}/orders/#{order_id}"
-  end
+  def order_book_url(venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}"
+
+  def order_url(venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}/orders"
+
+  def order_status_url(order_id, venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}/orders/#{order_id}"
 end
