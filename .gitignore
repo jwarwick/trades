@@ -1,3 +1,4 @@
+/config/dev.secret.exs
 /_build
 /cover
 /deps

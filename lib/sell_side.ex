@@ -34,6 +34,21 @@ defmodule SellSide do
     GenServer.call(pid, {:nav, price})
   end
 
+  @doc """
+  Order book info
+  """
+  def book do
+    Client.order_book(@venue, @stock)
+  end
+
+  def book_info do
+    # XXX - figure out spread, guess at target price
+  end
+
+  def buy_spread(target, spread) do
+    # XXX - buy above and below target, maybe multiple buy/sell combos
+  end
+
   ##
   ## Callbacks
 
