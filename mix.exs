@@ -31,7 +31,8 @@ defmodule Trades.Mixfile do
     [
       {:hackney, "~> 1.4"},
       {:poison, "~> 1.5"},
-      {:websocket_client, git: "https://github.com/jeremyong/websocket_client.git"}
+      {:websocket_client, git: "https://github.com/jeremyong/websocket_client.git"},
+      {:apex, "~>0.3.7"}
     ]
   end
 end

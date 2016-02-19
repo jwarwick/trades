@@ -15,13 +15,11 @@ defmodule Client.FillServer do
   @doc """
   Create a server to connect to the websocket
   """
-  def start_link(account, venue), do: start_link(account, venue, &IO.inspect/1)
-  def start_link(account, venue, callback), do: start_link(account, venue, nil, callback)
-  def start_link(account, venue, stock, callback) do
+  def start_link(s = %Client.StockId{}, callback \\ &(Apex.ap &1)) do
     :crypto.start
     :ssl.start
-    :websocket_client.start_link(ticker_url(account, venue, stock), 
-      __MODULE__, %{account: account, venue: venue, stock: stock, callback: callback})
+    :websocket_client.start_link(Client.Url.fill_url(s.account, s.venue, s.stock), 
+      __MODULE__, %{account: s.account, venue: s.venue, stock: s.stock, callback: callback})
   end
 
   ##
@@ -50,15 +48,4 @@ defmodule Client.FillServer do
   def websocket_terminate(_msg, _conn_state, _state) do
     :ok
   end
-
-  ##
-  ## Helper Functions
-
-  defp ticker_url(account, venue, nil) do
-    "wss://api.stockfighter.io/ob/api/ws/#{account}/venues/#{venue}/executions"
-  end
-  defp ticker_url(account, venue, stock) do
-    "wss://api.stockfighter.io/ob/api/ws/#{account}/venues/#{venue}/executions/stocks/#{stock}"
-  end
-
 end

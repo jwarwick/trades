@@ -4,5 +4,7 @@ use Mix.Config
 # config :trades, :stockfighter, 
 #     host: "https://api.stockfighter.io",
 #     base_path: "/ob/api"
+#     wss_host: "wss://api.stockfighter.io",
+#     wss_base_path: "/ob/api/ws"
 
 import_config "dev.secret.exs"

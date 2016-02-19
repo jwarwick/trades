@@ -1,4 +1,5 @@
-%{"certifi": {:hex, :certifi, "0.3.0"},
+%{"apex": {:hex, :apex, "0.3.7"},
+  "certifi": {:hex, :certifi, "0.3.0"},
   "hackney": {:hex, :hackney, "1.4.7"},
   "idna": {:hex, :idna, "1.0.2"},
   "mimerl": {:hex, :mimerl, "1.0.2"},
