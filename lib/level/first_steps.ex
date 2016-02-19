@@ -13,5 +13,6 @@ defmodule Level.FirstSteps do
     {:ok, buy_data} = Client.buy(stock, %{qty: 100, price: 0, order_type: :market})
     Apex.ap buy_data
     start_data |> GameMaster.instance_id |> GameMaster.status
+    {:ok, GameMaster.instance_id(start_data)}
   end
 end
