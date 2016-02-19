@@ -61,6 +61,11 @@ defmodule GameMaster do
     %Client.StockId{venue: venue, stock: stock, account: account}
   end
 
+  @doc """
+  Extract the instance id from the data returned from `start_level`
+  """
+  def instance_id(start_data), do: start_data["instanceId"]
+
 
   defp make_request(url, action) do
     with {:ok, 200, _headers, body_ref} <- :hackney.request(action, url, auth_header()),

@@ -3,17 +3,15 @@ defmodule Level.FirstSteps do
   Buy 100 shares of the specified stock
   """
 
-  @api_key "cbfb31ca0bd485da4e54ca12fd287a0f8cf7a234"
-  @venue "SOKYEX"
-  @stock "UFYP"
-  @account "JB47891558"
-  @quantity 100
-
   @doc """
-  Buy 100 shares of the stock at the specified price using immediate-or-cancel order type
+  Launch the level, buy 100 shares at market
   """
-  def buy(price) do
-    Client.buy(@account, @venue, @stock, price, @quantity, :limit, @api_key)
+  def execute do
+    {:ok, start_data} = GameMaster.start_level(:first_steps)
+    Apex.ap start_data
+    stock = GameMaster.make_stock_id(start_data)
+    {:ok, buy_data} = Client.buy(stock, %{qty: 100, price: 0, order_type: :market})
+    Apex.ap buy_data
+    start_data |> GameMaster.instance_id |> GameMaster.status
   end
-
 end
