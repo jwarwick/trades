@@ -58,6 +58,20 @@ defmodule Client do
   end
 
   @doc """
+  Buy a stock
+  """
+  def buy(s = %StockId{}, %{price: p, qty: q, order_type: t}) do
+    place_order(s, %Action{price: p, qty: q, direction: :buy, order_type: t})
+  end
+
+  @doc """
+  Sell a stock
+  """
+  def sell(s = %StockId{}, %{price: p, qty: q, order_type: t}) do
+    place_order(s, %Action{price: p, qty: q, direction: :sell, order_type: t})
+  end
+
+  @doc """
   Place an order for a stock
   """
   def place_order(s = %StockId{}, a = %Action{}) do

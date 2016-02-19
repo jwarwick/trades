@@ -14,13 +14,13 @@ defmodule Client.Url do
 
   def venue_heartbeat_url(venue), do: "#{@host_path}/venues/#{venue}/heartbeat"
 
-  def stock_list_url(venue), do: "#{@host_path}/#{venue}/stocks"
+  def stock_list_url(venue), do: "#{@host_path}/venues/#{venue}/stocks"
 
-  def quote_url(venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}/quote"
+  def quote_url(venue, stock), do: "#{@host_path}/venues/#{venue}/stocks/#{stock}/quote"
 
-  def order_book_url(venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}"
+  def order_book_url(venue, stock), do: "#{@host_path}/venues/#{venue}/stocks/#{stock}"
 
-  def order_url(venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}/orders"
+  def order_url(venue, stock), do: "#{@host_path}/venues/#{venue}/stocks/#{stock}/orders"
 
-  def order_status_url(order_id, venue, stock), do: "#{@host_path}/#{venue}/stocks/#{stock}/orders/#{order_id}"
+  def order_status_url(order_id, venue, stock), do: "#{@host_path}/venues/#{venue}/stocks/#{stock}/orders/#{order_id}"
 end

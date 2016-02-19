@@ -1,4 +1,4 @@
-defmodule ChockABlock do
+defmodule Level.ChockABlock do
   @moduledoc """
   GenServer to implement a strategy to buy a large block of a single stock.
   """

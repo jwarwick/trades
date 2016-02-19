@@ -1,4 +1,4 @@
-defmodule FirstSteps do
+defmodule Level.FirstSteps do
   @moduledoc """
   Buy 100 shares of the specified stock
   """

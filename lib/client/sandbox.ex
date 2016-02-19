@@ -19,4 +19,9 @@ defmodule Client.Sandbox do
   Sandbox account.
   """
   def account, do: "EXB123456"
+
+  @doc """
+  Pre-packaged StockId struct
+  """
+  def stock_id, do: %Client.StockId{venue: venue(), stock: stock(), account: account()}
 end

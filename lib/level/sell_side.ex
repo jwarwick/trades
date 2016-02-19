@@ -1,4 +1,4 @@
-defmodule SellSide do
+defmodule Level.SellSide do
   @moduledoc """
   Market making strategy
   """
