@@ -7,4 +7,4 @@ use Mix.Config
 #     wss_host: "wss://api.stockfighter.io",
 #     wss_base_path: "/ob/api/ws"
 
-import_config "dev.secret.exs"
+# import_config "dev.secret.exs"
