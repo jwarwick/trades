@@ -1,20 +1,10 @@
-# Trades
+Trades
+======
 
-**TODO: Add description**
+Elixir client for the StockFighter CTF.
 
-## Installation
+## Usage
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+## License
 
-  1. Add trades to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:trades, "~> 0.0.1"}]
-        end
-
-  2. Ensure trades is started before your application:
-
-        def application do
-          [applications: [:trades]]
-        end
-
+See the [LICENSE](LICENSE.md) file for license rights and limitations (MIT).
